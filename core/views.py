@@ -19,7 +19,7 @@ class EntryView(generics.ListAPIView, generics.CreateAPIView):
 
 class UserView(generics.ListAPIView):
     serializer_class = UserSerializer
-    queryset = queryset = User.objects.annotate(
+    queryset = User.objects.annotate(
         total_entry_count=Count("entry"),
         last_entry=Subquery(
             Entry.objects.filter(user=OuterRef("pk"))
